@@ -1,2 +1,8 @@
 -Create React App
 -Configured Tailwind css
+-Header
+-Routing of App
+-Login Form
+-Sign up form
+-Form validation
+-useRef
