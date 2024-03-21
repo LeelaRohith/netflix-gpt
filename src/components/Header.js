@@ -4,12 +4,15 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
-import { LOGO, USER_AVATAR } from "../utils/constants";
+import { LOGO, SUPPORTED_LAGUAGES, USER_AVATAR } from "../utils/constants";
+import { toggleGptSearchView } from "../utils/gptSlice";
+import { changeLanguage } from "../utils/configSlice";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       //This is like a event listener.It triggers whenever our page loads
@@ -42,16 +45,46 @@ const Header = () => {
         navigate("/error");
       });
   };
+  const handleGptSearchClick = () => {
+    dispatch(toggleGptSearchView());
+  };
+  const handleLanguageChange = (e) => {
+    dispatch(changeLanguage(e.target.value));
+  };
   return (
-    <div className="flex justify-between absolute w-full px-8 py-2 bg-gradient-to-b from-black z-10">
+    <div className="flex justify-between absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10">
       <img className="w-44" src={LOGO} alt="logo"></img>
       {user && (
-        <div className="flex justify-center align-middle">
+        <div className="flex p-2 justify-center">
+          {showGptSearch && (
+            <div>
+              <select
+                className="py-2 px-4 mx-2 my-2 bg-red-600 text-white rounded-lg"
+                onChange={handleLanguageChange}
+              >
+                {SUPPORTED_LAGUAGES.map((language) => (
+                  <option key={language.identifier} value={language.identifier}>
+                    {language.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
           <div>
+            <button
+              className="py-2 px-4 mx-4 my-2 bg-red-600 text-white rounded-lg"
+              onClick={handleGptSearchClick}
+            >
+              {showGptSearch ? "Homepage" : "GPT Search"}
+            </button>
+          </div>
+          <div className="py-[10px]">
             {" "}
             <img className="h-8 w-8" alt="user_logo" src={USER_AVATAR}></img>
           </div>
-          <div className="">
+
+          <div>
+            {" "}
             <button
               className="font-bold text-white w-24 h-12"
               onClick={handleSignOut}

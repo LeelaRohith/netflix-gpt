@@ -14,9 +14,9 @@ const VideoBackground = ({ movieid }) => {
       <iframe
         className="w-screen aspect-video object-cover"
         src={
-          "https://www.youtube.com/embed/" +
+          "https://www.youtube-nocookie.com/embed/" +
           trailer?.key +
-          "?&autoplay=1&mute=1&controls=0&controlslist=nodownload&loop=1"
+          "?rel=0?&autoplay=1&mute=1&controls=0&controlslist=nodownload&loop=1"
         }
         title="YouTube video player"
         frameBorder="0"
