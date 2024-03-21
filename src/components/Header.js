@@ -46,14 +46,19 @@ const Header = () => {
     <div className="flex justify-between absolute w-full px-8 py-2 bg-gradient-to-b from-black z-10">
       <img className="w-44" src={LOGO} alt="logo"></img>
       {user && (
-        <div className="flex justify-center">
-          <img className="h-8 w-8" alt="user_logo" src={USER_AVATAR}></img>
-          <button
-            className="font-bold text-white w-24 h-12"
-            onClick={handleSignOut}
-          >
-            Sign Out
-          </button>
+        <div className="flex justify-center align-middle">
+          <div>
+            {" "}
+            <img className="h-8 w-8" alt="user_logo" src={USER_AVATAR}></img>
+          </div>
+          <div className="">
+            <button
+              className="font-bold text-white w-24 h-12"
+              onClick={handleSignOut}
+            >
+              Sign Out
+            </button>
+          </div>
         </div>
       )}
     </div>
