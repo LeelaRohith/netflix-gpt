@@ -18,3 +18,4 @@ export const SUPPORTED_LAGUAGES = [
   { identifier: "hindi", name: "Hindi" },
   { identifier: "telugu", name: "Telugu" },
 ];
+export const OPENAI_KEY = "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";

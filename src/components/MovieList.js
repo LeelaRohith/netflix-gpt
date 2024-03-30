@@ -2,8 +2,8 @@ import React from "react";
 import MovieCard from "./MovieCard";
 
 const MovieList = ({ title, movies }) => {
-  console.log(movies);
-  console.log(title);
+  // console.log(movies);
+  // console.log(title);
   return (
     movies && (
       <div className="px-6">
